@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
+    'polls.apps.PollsConfig', #2:20 2. settings.py에 app 등록
 ]
 
 MIDDLEWARE = [
