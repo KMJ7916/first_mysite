@@ -1,4 +1,56 @@
-<h1>{{question.question_text}}</h1>
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ question.question_text }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Vote">
+    </form>
+
+
+<!-- {% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+<!-- h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul> -->
+<!-- <h1>{{question.question_text}}</h1>
+
+<ul>
+{% for question in question_choice_set.all %}
+    <li>{{choice.choice_text}}</li>
+{% endfor %}
+</ul> -->
+
+<!-- <form action="{% url 'polls:vote' question.id %}" method="post"></form>
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Vote">
+</form> -->
+<!-- <h1>{{question.question_text}}</h1>
 <h2>{{question.pub_date}}</h2>
 <h3>{{question.choice_set.all}}</h3>
 <h4>{{question.choice_set.all.0}}</h4>
+<h5>{{question.choice_set.all.0.choice_text}}</h5>
+<h6>{{question.choice_set.all.0.votes}}</h6>
+<h5>전체 Choice 개수는: {{question.choice_set.all.0.votes}}</h5> -->
